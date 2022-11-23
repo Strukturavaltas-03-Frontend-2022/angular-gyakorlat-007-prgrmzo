@@ -50285,6 +50285,15 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
   <div class="col-6 offset-3">
     <form #eventForm="ngForm" (ngSubmit)="onUpdate(eventForm)">
       <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="event.id"
+          name="id"
+          readonly
+        />
+      </div>
+      <div class="form-group">
         <label for="name">Name</label>
         <input
           [(ngModel)]="event.name"
@@ -50295,7 +50304,7 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
           pattern=".{8,}"
           required
         />
-        <div [hidden]="eventForm.controls['name'].valid" class="error-message">
+        <div [hidden]="eventForm.controls['name']?.valid" class="error-message">
           Event name must be at least 8 characters long!
         </div>
         <div class="form-group">
@@ -50428,7 +50437,6 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
       }));
     }
     onUpdate(eventForm) {
-      eventForm.value.id = this.event.id;
       this.eventService.update(eventForm.value).subscribe((event) => {
         this.router.navigate(["/"]);
       });
