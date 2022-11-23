@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Event } from 'src/app/model/event';
 import { EventService } from 'src/app/service/event.service';
 
+
 @Component({
   selector: 'app-events-list',
   templateUrl: './events-list.component.html',
